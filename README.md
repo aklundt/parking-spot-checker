@@ -26,7 +26,6 @@ The model also works with images taken from a **lower angle**, where cars tend t
 
 In images covering many spaces, the model performs accurately.
 
----
 
 ## Usage
 
