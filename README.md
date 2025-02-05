@@ -1,44 +1,68 @@
 # parking-spot-checker
-A program to detect open parking spots in images of parking lots.
 
-A YOLOv8 model is used to detect cars in the image. I trained the model's weights with a dataset of over 10k labelled parking lot images, collected from multiple sources.
+A program to detect open parking spaces in images of parking lots for use in real-time systems.
 
-There are several different versions of the model trained with different epoch and batch sizes, each with their own strengths and weaknesses.
+There are several different versions of the model trained with different epoch and batch sizes, each with their own
+strengths and weaknesses.
 
 ## Examples
 
 ### High Angle
-<img src="readme_media/high_unprocessed.png" alt="High angle unprocessed image of parking lot" width="75%"/>
 
-The model works very well with images taken from a **high angle**, where the view is clear and the cars are easily distinguishable.
+<div style="display: flex; flex-direction: row; gap: 10px;">
+    <img src="readme_media/high_unprocessed.png" alt="High angle unprocessed image of parking lot" width="50%"/>
+    <img src="readme_media/high_processed.png" alt="High angle processed image of parking lot, every unoccupied parking space is annotated" width="50%"/>
+</div>
 
-<img src="readme_media/high_processed.png" alt="High angle processed image of parking lot, every unoccupied parking spot is annotated" width="75%"/>
-
-**Green spaces** represent unoccupied parking spots.
+The model works very well with images taken from a **high angle**, where the view is clear and the cars are easily
+distinguishable.
 
 ### Lower Angle
-<img src="readme_media/lower_unprocessed.png" alt="Lower angle unprocessed image of parking lot" width="75%"/>
+
+<div style="display: flex; flex-direction: row; gap: 10px;">
+    <img src="readme_media/lower_unprocessed.png" alt="Lower angle unprocessed image of parking lot" width="50%"/>
+    <img src="readme_media/lower_processed.png" alt="Lower angle processed image of parking lot, every parking space is annotated" width="50%"/>
+</div>
 
 The model also works with images taken from a **lower angle**, where cars tend to obstruct the view of others.
 
-<img src="readme_media/lower_processed.png" alt="Lower angle processed image of parking lot, every parking spot is annotated" width="75%"/>
-
 ### Large Parking Lots
-<img src="readme_media/large_unprocessed.png" alt="Unprocessed image of large parking lot" width="75%"/>
 
-The model detects parking spots in images covering many spaces.
+<div style="display: flex; flex-direction: row; gap: 10px;">
+    <img src="readme_media/large_unprocessed.png" alt="Unprocessed image of large parking lot" width="50%"/>
+    <img src="readme_media/large_processed.png" alt="Processed image of large parking lot, every parking space is annotated" width="50%"/>
+</div>
 
-<img src="readme_media/large_processed.png" alt="Processed image of large parking lot, every parking spot is annotated" width="75%"/>
+In images covering many spaces, the model performs accurately.
+
+---
+
+## Usage
+
+The program was created to be used in a real-time parking space detection system:
+
+1. A device like a Raspberry Pi can be used to capture images and stream them in the MJPEG format.
+2. A processing server receives the MJPEG stream[^1] and processes frames with the custom model, returning a stream with
+   annotated parking spaces.
+3. The annotated stream can be viewed on a web interface or a dedicated application.
+
+[^1]: For simplicity, I used the free VPN service [Tailscale](https://tailscale.com/) to securely access the feed from a
+device on a different network.
 
 ---
 
 ## Dataset Credits
-This project includes data from external sources. Each dataset belongs to its respective authors and is subject to their respective licenses. Please refer to their official sources for licensing details before using the data or this project. Proper attribution is provided below.
+
+This project includes data from external sources. Each dataset belongs to its respective authors and is subject to their
+respective licenses. Please refer to their official sources for licensing details before using the data or this project.
+Proper attribution is provided below.
 
 ### **CNRPark+EXT Dataset**
+
 **Source:** [CNRPark](http://cnrpark.it/)  
 **License:** Open Data Commons Open Database License (ODbL) v1.0  
 **Usage Terms:**
+
 - You are free to **share**, **modify**, and **use** this dataset for any purpose, including commercial use.
 - You **must** provide attribution and distribute any modified versions under the same license.
 
@@ -49,9 +73,11 @@ Alfredo Paolanti, Paolo Zoppetti, Alessandro Pierdicca, Emanuele Frontoni,
 [DOI: 10.1109/CVPRW.2018.00009](https://doi.org/10.1109/CVPRW.2018.00009)
 
 ### **DeteksiParkirKosong Dataset**
+
 **Source:** [Roboflow Universe](https://universe.roboflow.com/skripsijeremy/deteksiparkirkosong)  
 **License:** Creative Commons Attribution 4.0 International (CC BY 4.0)  
 **Usage Terms:**
+
 - You are free to **share**, **modify**, and **use** this dataset for any purpose, including commercial use.
 - You **must** provide proper attribution to the dataset author.
 
@@ -59,9 +85,11 @@ Alfredo Paolanti, Paolo Zoppetti, Alessandro Pierdicca, Emanuele Frontoni,
 *"DeteksiParkirKosong Dataset"* by **SkripsiJeremy**, available on Roboflow Universe.
 
 ### **PKLot Dataset**
+
 **Source:** [PKLot Dataset](http://web.inf.ufpr.br/vri/parking-lot-database)  
 **License:** Creative Commons Attribution 4.0 (CC BY 4.0)  
 **Usage Terms:**
+
 - You are free to **share**, **modify**, and **use** this dataset for any purpose, including commercial use.
 - You **must** acknowledge the source by citing the original paper in any publications using this dataset.
 
@@ -74,4 +102,5 @@ Paulo R.L. de Almeida, Luiz S. Oliveira, Alceu S. Britto Jr., Eunelson J. Silva 
 ---
 
 ### **License Disclaimer**
+
 This project does not claim ownership of these datasets; I only utilize them for research and development purposes.

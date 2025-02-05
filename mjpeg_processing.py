@@ -18,9 +18,9 @@ def draw_circles(given_img, detected_id, conf, xyxy, size):
 # Define constants
 model_path = 'models/best_320x12n.pt'
 confidence_threshold = 0.35
-dot_size = 0.35
-# I don't have an mjpeg stream to test this with, so I'm using a random one I found online
-stream_url = 'http://takemotopiano.aa1.netvolante.jp:8190/nphMotionJpeg?Resolution=640x480&Quality=Standard&Framerate=30'
+dot_size = 0.10
+# URL of the stream provided by running stream_mjpeg.py
+stream_url = 'http://localhost:8080/parking_lot'
 process_interval = 10  # seconds
 
 # Load stream
@@ -52,7 +52,7 @@ while True:
             frame = draw_circles(frame, class_id, confidence, box.xyxy[0], dot_size)
 
     frame = cv.resize(frame, (640, int(640 * height / width)))
-    cv.imshow(f'Inferenced Stream at {1 / process_interval} FPS', frame)
+    cv.imshow(f'Inferenced Stream at 1 frame every {process_interval} seconds', frame)
 
     # Controls to increase and decrease dot size
     key = cv.waitKey(1) & 0xFF
