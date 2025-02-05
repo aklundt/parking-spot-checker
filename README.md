@@ -16,7 +16,7 @@ distinguishable.
 
 ### Lower Angle
 
-<img src="readme_media/low.png" alt="Lower angle image of parking lot, every parking space is annotated" width="100%"/>
+<img src="readme_media/lower.png" alt="Lower angle image of parking lot, every parking space is annotated" width="100%"/>
 
 The model also works with images taken from a **lower angle**, where cars tend to obstruct the view of others.
 
